@@ -36,10 +36,6 @@ void main()
 {
     int maxNumber; //Set the max number based on reading the save file.
 
-    fp = fopen("maxsave.txt", "r"); //Open the text file to READ the previous max number saved. 
-                                                               //By default, file contains "10"
-    fscanf(fp, "%d", &maxNumber);
-
     printf("\nWelcome to the Number Guessing Game!\n");
     printf("From this main menu, input \"1\" to play, input \"2\" to change the number range by"
         " increasing the max number limit, and input \"3\" to exit the menu and end the game!\n");
@@ -48,6 +44,10 @@ void main()
     
     while(userInput != 3)
     {
+        fp = fopen("maxsave.txt", "r"); //Open the text file to READ the previous max number saved. 
+                                                               //By default, file contains "10"
+        fscanf(fp, "%d", &maxNumber); //Make sure we read from the file every loop.
+
         printf("\nSelect an Option:\n");
         printf("1. Play \n2. Set Number Limit \n3. Quit Game\n");
         scanf("%d", &userInput);
@@ -121,30 +121,34 @@ void main()
 
     void option2() //Pass the file.
     {
-        int desiredValue;
+        int desiredValue = 277; //Set the value out of range initially so we enter the while loop.
 
-        fprints("Adjust the number range by setting the max possible value. "
-                "\nThe max possible value is 256. Negative numbers are not allowed.");
+        printf("\nAdjust the number range by setting the max possible value. "
+                "\nThe max possible value is 256. Negative numbers are not allowed.\n");
 
         while(desiredValue > 256 || desiredValue < 0)
         {
-            fprints("\nPlease input your desired max value.");
+            printf("\nPlease input your desired max value. ");
             scanf("%d", &desiredValue);
 
                 if(desiredValue > 256)
                 {
-                    fprints("Sorry, that value is beyond the max possible value."
-                            "Please enter a value from 0-256");
+                    printf("\nSorry, that value is beyond the max possible value."
+                            " Please enter a value from 0-256\n");
                 }
 
                 if(desiredValue < 0)
                 {
-                    fprints("Sorry, that value is negative. Please enter a value from "
-                            "0-256");
+                    printf("\nSorry, that value is negative. Please enter a value from "
+                            "0-256\n");
                 }
         }
-        
+
         fp =  fopen("maxsave.txt", "w+");
         fprintf(fp,"%d", desiredValue); //Saves the desired value to the file.
                                         //Overwrites previous max number saved.
+        fclose(fp);
+        printf("\nAll set! Returning to main menu!\n");
+
+        return;
     }
