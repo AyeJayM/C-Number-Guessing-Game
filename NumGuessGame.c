@@ -38,7 +38,7 @@ void main()
 
     fp = fopen("maxsave.txt", "r"); //Open the text file to READ the previous max number saved. 
                                                                //By default, file contains "10"
-    fscanf(fp, "%d", maxNumber);
+    fscanf(fp, "%d", &maxNumber);
 
     printf("\nWelcome to the Number Guessing Game!\n");
     printf("From this main menu, input \"1\" to play, input \"2\" to change the number range by"
