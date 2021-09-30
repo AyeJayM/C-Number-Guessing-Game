@@ -31,9 +31,9 @@ void option1(); //Declaring option1 method
 void option2(); //Declaring option2 method
 int numberPicker(int PassedArg); //Declare the number generator
 
+FILE *fp; //This points to the Max Number sava data file.
 void main()
 {
-    FILE *fp;
     int maxNumber; //Set the max number based on reading the save file.
 
     fp = fopen("maxsave.txt", "r"); //Open the text file to READ the previous max number saved. 
@@ -94,11 +94,11 @@ void main()
                 printf("\nYour guess was too high! Try again!\n");
             }
 
-            if(userGuess = q) //CHECK FOR Q INPUT WORK IN PROGRESS
+            /*if(userGuess = q) //CHECK FOR Q INPUT WORK IN PROGRESS1 - THIS BREAKS THE GAME
             {
                         printf("Thank you for playing!");
                         return;   
-            }
+            }*/
         }
 
         printf("\nBingo! Cha! Now returning to game menu.\n"); //WIN PROMPT
@@ -119,7 +119,32 @@ void main()
         return number;
     }
 
-    void option2()
+    void option2() //Pass the file.
     {
+        int desiredValue;
 
+        fprints("Adjust the number range by setting the max possible value. "
+                "\nThe max possible value is 256. Negative numbers are not allowed.");
+
+        while(desiredValue > 256 || desiredValue < 0)
+        {
+            fprints("\nPlease input your desired max value.");
+            scanf("%d", &desiredValue);
+
+                if(desiredValue > 256)
+                {
+                    fprints("Sorry, that value is beyond the max possible value."
+                            "Please enter a value from 0-256");
+                }
+
+                if(desiredValue < 0)
+                {
+                    fprints("Sorry, that value is negative. Please enter a value from "
+                            "0-256");
+                }
+        }
+        
+        fp =  fopen("maxsave.txt", "w+");
+        fprintf(fp,"%d", desiredValue); //Saves the desired value to the file.
+                                        //Overwrites previous max number saved.
     }
