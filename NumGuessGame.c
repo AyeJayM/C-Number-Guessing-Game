@@ -31,10 +31,15 @@ void option1(); //Declaring option1 method
 void option2(); //Declaring option2 method
 int numberPicker(int PassedArg); //Declare the number generator
 
-int maxNumber = 50; //Set the max number based on reading the save file.
-
 void main()
 {
+    FILE *fp;
+    int maxNumber; //Set the max number based on reading the save file.
+
+    fp = fopen("maxsave.txt", "r"); //Open the text file to READ the previous max number saved. 
+                                                               //By default, file contains "10"
+    fscanf(fp, "%d", maxNumber);
+
     printf("\nWelcome to the Number Guessing Game!\n");
     printf("From this main menu, input \"1\" to play, input \"2\" to change the number range by"
         " increasing the max number limit, and input \"3\" to exit the menu and end the game!\n");
@@ -49,7 +54,7 @@ void main()
 
         if(userInput == 1)
         {
-            option1();
+            option1(maxNumber);
         }
 
         if(userInput == 2)
@@ -66,7 +71,7 @@ void main()
 }
 
 
-    void option1()
+    void option1(int maxNumber)
     {
         int randNumber = numberPicker(maxNumber);
         int userGuess;
