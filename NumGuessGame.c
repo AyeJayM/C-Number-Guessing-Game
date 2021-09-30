@@ -31,21 +31,21 @@ void option1(); //Declaring option1 method
 void option2(); //Declaring option2 method
 int numberPicker(int PassedArg); //Declare the number generator
 
-int maxNumber; //Set the max number based on reading the save file.
+int maxNumber = 50; //Set the max number based on reading the save file.
 
 void main()
 {
-    printf("Welcome to the Number Guessing Game!\n");
+    printf("\nWelcome to the Number Guessing Game!\n");
     printf("From this main menu, input \"1\" to play, input \"2\" to change the number range by"
-        " increasing the max number limit, and input \"3\" to exit the menu and end the game!");
+        " increasing the max number limit, and input \"3\" to exit the menu and end the game!\n");
 
     int userInput;
     
     while(userInput != 3)
     {
-        printf("Select an Option:");
-        printf("1. Play \n2. Set Number Limit \n3.Quit Game");
-        scanf("%d", userInput);
+        printf("\nSelect an Option:\n");
+        printf("1. Play \n2. Set Number Limit \n3. Quit Game\n");
+        scanf("%d", &userInput);
 
         if(userInput == 1)
         {
@@ -56,56 +56,50 @@ void main()
         {
             option2();
         }
-        else
+        if((userInput <= 0) || (userInput >= 4))
         {
             printf("Invalid Input. Please enter either 1, 2, or 3.");
         }
 
     }
-    printf("Thank you for playing!");
+    printf("Thank you for playing!"); //OPTION 3
 }
-
-
 
 
     void option1()
     {
         int randNumber = numberPicker(maxNumber);
         int userGuess;
-        char q = "q";
+        char q = q; //removed quotes from q REMEMBER !!!!!!!!!
+
+        printf("\nWelcome to the number guessing game! We picked a number from 0 to %d, try finding it!"
+               " Enter your first guess!\n", maxNumber);
 
         while(userGuess != randNumber)
         {
+            scanf("%d", &userGuess);
 
             if(userGuess < randNumber) //TOO LOW
             {
-                printf("Your guess is too low! Try again!");
+                printf("\nYour guess is too low! Try again!\n");
             }
 
             if(userGuess > randNumber) //TOO HIGH
             {
-                printf("Your guess was too high! Try again!");
+                printf("\nYour guess was too high! Try again!\n");
             }
 
-            else //CHECK FOR Q INPUT
+            if(userGuess = q) //CHECK FOR Q INPUT WORK IN PROGRESS
             {
-            char userChar = userGuess + '0';
-            
-            if (userChar == "q")
-                {
-                    printf("Thank you for playing!");
-                    return;
-                }
+                        printf("Thank you for playing!");
+                        return;   
             }
         }
 
-        printf("Bingo! Aw yeah! Now returning to game menu."); //WIN PROMPT
+        printf("\nBingo! Cha! Now returning to game menu.\n"); //WIN PROMPT
         return;
 
     }
-
-
-
 
     int numberPicker(int MaxValue)
     {
@@ -118,4 +112,9 @@ void main()
         int number = (rand() % MaxValue);
 
         return number;
+    }
+
+    void option2()
+    {
+
     }
