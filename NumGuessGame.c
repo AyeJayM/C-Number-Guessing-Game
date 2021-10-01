@@ -17,7 +17,8 @@ OPTION 1:
 
 OPTION 2:
     1. Tell them the max number they can set the value (Default 10)
-        > This will require a read of the file that holds the saved max number.
+    2. Allow user to input desired max value.
+        > This will require a read/write of the file that holds the saved max number.
 
 OPTION 3:
     1. End the game/program by breaking from the loop and concluding main.
@@ -94,10 +95,19 @@ void main()
                 printf("\nYour guess was too high! Try again!\n");
             }
 
-            /*if(userGuess = q) //CHECK FOR Q INPUT WORK IN PROGRESS1 - THIS BREAKS THE GAME
+            /*else
             {
-                        printf("Thank you for playing!");
-                        return;   
+                
+                char text[1];
+                sprintf(text,"%d",userGuess);
+                char p = text[0];
+
+                if(text[0] = q)
+                {
+                    printf("Thank you for playing!");
+                    return;
+                }
+
             }*/
         }
 
