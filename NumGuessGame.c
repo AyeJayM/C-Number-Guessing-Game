@@ -4,7 +4,7 @@
 
 /*
 MAIN MENU
-    1. Have our program read from a file that contains the last saved max value. Default is 10.
+    1. Set default max number to 10.
     2. Create a function (main) that will act as the main menu and have this main able to call
         2 functions that will serve as Play and Change Max. Quit will execute when the user
         inputs 3 and breaks out of the while loop this will be held in.
@@ -72,7 +72,6 @@ void main()
     {
         int randNumber = numberPicker(maxNumber);
         int userGuess;
-        char q = q; //removed quotes from q REMEMBER !!!!!!!!!
 
         printf("\nWelcome to the number guessing game! We picked a number from 0 to %d, try finding it!"
                " Enter your first guess!\n", maxNumber);
