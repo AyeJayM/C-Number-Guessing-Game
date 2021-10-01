@@ -17,12 +17,13 @@ OPTION 1:
 
 OPTION 2:
     1. Tell them the max number they can set the value (Default 10)
-        > This will require a read of the file that holds the saved max number.
+    2. Allow user to input max value within allowable range.
+        > This will require a write to the file that holds the saved max number. (BRANCH VERSION ONLY)
 
 OPTION 3:
     1. End the game/program by breaking from the loop and concluding main.
 
-BRANCH - SAVE USER MAX
+BRANCH - SAVE USER MAX (BRANCH VERSION ONLY)
     1. Use w+ to read/write/overwrite the current saved max.
         >This will be useful as it allows us to overwrite the previous max.
 */
@@ -79,22 +80,23 @@ void main()
         while(userGuess != randNumber)
         {
             scanf("%d", &userGuess);
+            char qCheck = getchar();
 
-            if(userGuess < randNumber) //TOO LOW
+            if( (userGuess < randNumber) && (qCheck != 'q') )//TOO LOW
             {
                 printf("\nYour guess is too low! Try again!\n");
             }
 
-            if(userGuess > randNumber) //TOO HIGH
+            if( (userGuess > randNumber) && (qCheck != 'q') )//TOO HIGH
             {
                 printf("\nYour guess was too high! Try again!\n");
             }
 
-            /*if(userGuess = q) //CHECK FOR Q INPUT WORK IN PROGRESS1 - THIS BREAKS THE GAME
+            if(qCheck == 'q') //QUIT GAME
             {
-                        printf("Thank you for playing!");
-                        return;   
-            }*/
+                printf("\nThank you for playing! Returning to main menu!\n");
+                return;
+            }
         }
 
         printf("\nBingo! Cha! Now returning to game menu.\n"); //WIN PROMPT
