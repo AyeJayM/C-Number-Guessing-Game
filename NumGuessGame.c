@@ -76,7 +76,6 @@ void main()
     {
         int randNumber = numberPicker(maxNumber);
         int userGuess;
-        char q = q; //removed quotes from q REMEMBER !!!!!!!!!
 
         printf("\nWelcome to the number guessing game! We picked a number from 0 to %d, try finding it!"
                " Enter your first guess!\n", maxNumber);
