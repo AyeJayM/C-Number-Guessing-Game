@@ -28,13 +28,12 @@ BRANCH - SAVE USER MAX
 */
 
 void option1(); //Declaring option1 method
-void option2(); //Declaring option2 method
+int option2(); //Declaring option2 method
 int numberPicker(int PassedArg); //Declare the number generator
 
-FILE *fp; //This points to the Max Number sava data file.
 void main()
 {
-    int maxNumber; //Set the max number based on reading the save file.
+    int maxNumber = 10; //Set max number to DEFAULT 10 on Startup
 
     printf("\nWelcome to the Number Guessing Game!\n");
     printf("From this main menu, input \"1\" to play, input \"2\" to change the number range by"
@@ -44,9 +43,6 @@ void main()
     
     while(userInput != 3)
     {
-        fp = fopen("maxsave.txt", "r"); //Open the text file to READ the previous max number saved. 
-                                                               //By default, file contains "10"
-        fscanf(fp, "%d", &maxNumber); //Make sure we read from the file every loop.
 
         printf("\nSelect an Option:\n");
         printf("1. Play \n2. Set Number Limit \n3. Quit Game\n");
@@ -59,7 +55,7 @@ void main()
 
         if(userInput == 2)
         {
-            option2();
+            maxNumber = option2();
         }
         if((userInput <= 0) || (userInput >= 4))
         {
@@ -119,7 +115,7 @@ void main()
         return number;
     }
 
-    void option2() //Pass the file.
+    int option2() //Pass the file.
     {
         int desiredValue = 277; //Set the value out of range initially so we enter the while loop.
 
@@ -144,11 +140,7 @@ void main()
                 }
         }
 
-        fp =  fopen("maxsave.txt", "w+");
-        fprintf(fp,"%d", desiredValue); //Saves the desired value to the file.
-                                        //Overwrites previous max number saved.
-        fclose(fp);
         printf("\nAll set! Returning to main menu!\n");
 
-        return;
+        return desiredValue;
     }
